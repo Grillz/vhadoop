@@ -27,39 +27,45 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.define :master do |master|
     master.vm.provider :virtualbox do |v|
-      v.name = "masternode"
+      v.name = "hadoop-master"
      #v.customize ["modifyvm", :id, "--memory", "4096"]
     end
     master.vm.network :private_network, ip: "10.10.2.100"
-    master.vm.hostname = "masternode"
-    master.vm.provision :shell, path: "base.sh"
-    master.vm.provision :shell, path: "master.sh"
-    master.vm.provision :hostmanager
+    master.vm.hostname = "hadoop-master"
+    master.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
+    master.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"
+    #master.vm.provision :shell, path: "base.sh"
+    #master.vm.provision :shell, path: "master.sh"
+    #master.vm.provision :hostmanager
   end
 
   config.vm.define :slave1 do |slave1|
     slave1.vm.box = "chef/centos-6.6"
     slave1.vm.provider :virtualbox do |v|
-      v.name = "slavenode1"
+      v.name = "hadoop-slave1"
      #v.customize ["modifyvm", :id, "--memory", "2048"]
     end
     slave1.vm.network :private_network, ip: "10.10.2.101"
-    slave1.vm.hostname = "slavenode1"
-    slave1.vm.provision :shell, path: "base.sh"
-    slave1.vm.provision :shell, path: "slave.sh"
-    slave1.vm.provision :hostmanager
+    slave1.vm.hostname = "hadoop-slave1"
+    master.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
+    master.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"  
+    #slave1.vm.provision :shell, path: "base.sh"
+    #slave1.vm.provision :shell, path: "slave.sh"
+    #slave1.vm.provision :hostmanager
   end
   config.vm.define :slave2 do |slave2|
     slave2.vm.box = "chef/centos-6.6"
     slave2.vm.provider :virtualbox do |v|
-      v.name = "slavenode2"
+      v.name = "hadoop-slave2"
      #v.customize ["modifyvm", :id, "--memory", "2048"]
     end
     slave2.vm.network :private_network, ip: "10.10.2.102"
-    slave2.vm.hostname = "slavenode2"
-    slave2.vm.provision :shell, path: "base.sh"
-    slave2.vm.provision :shell, path: "slave.sh"
-    slave2.vm.provision :hostmanager
+    slave2.vm.hostname = "hadoop-slave2"
+    master.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
+    master.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"     
+    #slave2.vm.provision :shell, path: "base.sh"
+    #slave2.vm.provision :shell, path: "slave.sh"
+    #slave2.vm.provision :hostmanager
   end
 
   # Create a public network, which generally matched to bridged network.
