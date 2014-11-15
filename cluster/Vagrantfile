@@ -34,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master.vm.hostname = "hadoop-master"
     master.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
     master.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"
-    #master.vm.provision :shell, path: "base.sh"
+    master.vm.provision :shell, path: "base1.sh"
     #master.vm.provision :shell, path: "master.sh"
     #master.vm.provision :hostmanager
   end
@@ -47,9 +47,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     slave1.vm.network :private_network, ip: "10.10.2.101"
     slave1.vm.hostname = "hadoop-slave1"
-    master.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
-    master.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"  
-    #slave1.vm.provision :shell, path: "base.sh"
+    slave1.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
+    slave1.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"  
+    slave1.vm.provision :shell, path: "base1.sh"
     #slave1.vm.provision :shell, path: "slave.sh"
     #slave1.vm.provision :hostmanager
   end
@@ -61,9 +61,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     slave2.vm.network :private_network, ip: "10.10.2.102"
     slave2.vm.hostname = "hadoop-slave2"
-    master.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
-    master.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"     
-    #slave2.vm.provision :shell, path: "base.sh"
+    slave2.vm.provision :shell, path: "~/VagrantSpace/allbase.sh"
+    slave2.vm.provision :shell, path: "~/VagrantSpace/vimconf.sh"     
+    slave2.vm.provision :shell, path: "base1.sh"
     #slave2.vm.provision :shell, path: "slave.sh"
     #slave2.vm.provision :hostmanager
   end
@@ -86,7 +86,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-  #
+  # 
   # config.vm.provider "virtualbox" do |vb|
   #   # Don't boot with headless mode
   #   vb.gui = true
